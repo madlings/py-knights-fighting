@@ -1,10 +1,10 @@
 class Knight:
-    def __init__(self, config: dict):
+    def __init__(self, config: dict) -> None:
         self.name: str = config["name"]
         self.hp: int = config["hp"]
         self.power: int = config["power"]
         self.protection: int = 0
-        
+
         # Internal configuration storage
         self._armour = config.get("armour", [])
         self._weapon = config.get("weapon", {})
@@ -16,10 +16,9 @@ class Knight:
         """Calculate effective stats before battle."""
         # Apply Armour
         self.protection += sum(item["protection"] for item in self._armour)
-        
+
         # Apply Weapon
         self.power += self._weapon.get("power", 0)
-        
         # Apply Potion
         if self._potion:
             effect = self._potion.get("effect", {})
